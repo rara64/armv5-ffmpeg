@@ -12,7 +12,7 @@ jobs:
       - name: Check ffmpeg version
         run: |
           FFMPEG_VERSION=$(curl -s https://ffmpeg.org/releases/ | sed -nE 's/.*ffmpeg-([0-9.]+).tar.*/\1/p' | sort -V | tail -1)
-          echo "FFMPEG_VERSION=$FFMPEG_VERSION" >> $GITHUB_ENV
+          echo "FFMPEG_VERSION=8.1.2" >> $GITHUB_ENV
           echo "Latest version is $FFMPEG_VERSION"
 
           REPO_RELEASE=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
