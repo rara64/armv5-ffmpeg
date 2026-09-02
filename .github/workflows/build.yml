@@ -38,7 +38,7 @@ jobs:
       - name: Build the package
         if: ${{ env.BUILD_NEEDED == 1 }}
         run: |
-          docker buildx build --load --tag ffmpeg --platform linux/arm/v5 --allow security.insecure --no-cache --build-arg FFMPEG_VERSION "${{ env.FFMPEG_VERSION }}" .
+          docker buildx build --load --tag ffmpeg --platform linux/arm/v5 --allow security.insecure --no-cache --build-arg FFMPEG_VERSION="${{ env.FFMPEG_VERSION }}" .
 
       - name: Extract the package
         if: ${{ env.BUILD_NEEDED == 1 }}
