@@ -100,4 +100,4 @@ RUN mkdir ffmpeg_sources && \
 COPY DEBIAN/control.optimized /ffmpeg/DEBIAN/control
 
 RUN sed -i "s/\*VER\*/$FFMPEG_VERSION/g" /ffmpeg/DEBIAN/control && \
-    dpkg-deb --build ffmpeg "ffmpeg_${FFMPEG_VERSION}_armel.deb"
+    dpkg-deb --build ffmpeg "ffmpeg_${FFMPEG_VERSION}_armel_optimized.deb"
