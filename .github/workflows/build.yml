@@ -69,6 +69,6 @@ jobs:
           repo_token: ${{ secrets.REPO_TOKEN }}
           file: "*.deb"
           file_glob: true
-          tag: ${{ env.FFMPEG_VERSION }}
-          body: ffmpeg ${{ env.FFMPEG_VERSION }} for armv5te (armel)
+          tag: ${{ needs.check.outputs.FFMPEG_VERSION }}
+          body: ffmpeg ${{ needs.check.outputs.FFMPEG_VERSION }} for armv5te (armel)
           overwrite: true

@@ -3,7 +3,7 @@ Latest ffmpeg debian package for armel platform.
 
 Full package includes: ffmpeg, ffplay and ffprobe.
 
-Optimized package removes ffplay, disables sdl2 and enables stripping.
+Optimized package removes ffplay, disables sdl2, libdrm and enables stripping.
 
 Full package build config:
 `
