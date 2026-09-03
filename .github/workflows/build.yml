@@ -55,5 +55,5 @@ jobs:
           file: "*.deb"
           file_glob: true
           tag: ${{ env.FFMPEG_VERSION }}
-          body: rustc ${{ env.FFMPEG_VERSION }} for armv5te (armel)
+          body: ffmpeg ${{ env.FFMPEG_VERSION }} for armv5te (armel)
           overwrite: true
