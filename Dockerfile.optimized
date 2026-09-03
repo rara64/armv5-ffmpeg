@@ -9,7 +9,7 @@ RUN apt update && apt install -y build-essential cmake autoconf pkg-config wget 
     libjxl-dev libmysofa-dev libopenjp2-7-dev libopenmpt-dev librabbitmq-dev librav1e-dev librist-dev librsvg2-dev librubberband-dev \
     libshine-dev libspeex-dev libsrt-gnutls-dev libsvtav1enc-dev libtheora-dev libtwolame-dev libvidstab-dev libvpx-dev libxvidcore-dev libzimg-dev \
     libzmq3-dev libzvbi-dev libopenal-dev ocl-icd-opencl-dev libpocketsphinx-dev libjack-dev libcdio-dev libcdio-paranoia-dev \
-    libass-dev libmp3lame-dev libopus-dev libsnappy-dev libsoxr-dev libssh-dev libx264-dev libx265-dev
+    libass-dev libmp3lame-dev libopus-dev libsnappy-dev libsoxr-dev libssh-dev libx264-dev libx265-dev libdrm-dev
 
 RUN mkdir ffmpeg_sources && \
     cd ffmpeg_sources && \
