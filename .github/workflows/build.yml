@@ -7,13 +7,14 @@ jobs:
   check:
     runs-on: ubuntu-latest
     outputs:
-      ffmpeg_version: ${{ steps.check.outputs.ffmpeg_version }}
-      build_needed: ${{ steps.check.outputs.build_needed }}
+      ffmpeg_version: ${{ steps.check-version.outputs.ffmpeg_version }}
+      build_needed: ${{ steps.check-version.outputs.build_needed }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
 
       - name: Check ffmpeg version
+        id: check-version
         run: |
           FFMPEG_VERSION=$(curl -s https://ffmpeg.org/releases/ | sed -nE 's/.*ffmpeg-([0-9.]+).tar.*/\1/p' | sort -V | tail -1)
           echo "ffmpeg_version=$FFMPEG_VERSION" >> $GITHUB_OUTPUT
