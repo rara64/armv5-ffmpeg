@@ -55,7 +55,7 @@ jobs:
 
       - name: Build the package
         run: |
-          docker buildx build --load --tag ffmpeg --platform linux/arm/v5 --allow security.insecure --no-cache --build-arg FFMPEG_VERSION="${{ needs.check.outputs.FFMPEG_VERSION }}" --file ${{ matrix.dockerfile }}
+          docker buildx build --load --tag ffmpeg --platform linux/arm/v5 --allow security.insecure --no-cache --build-arg FFMPEG_VERSION="${{ needs.check.outputs.FFMPEG_VERSION }}" --file ${{ matrix.dockerfile }} .
 
       - name: Extract the package
         shell: bash
