@@ -2,7 +2,7 @@ Package: ffmpeg
 Version: *VER*
 Architecture: armel
 Maintainer: rara64
-Depends: libatomic1 (>= 4.8), libavcodec61 (>= 7:7.1.5), libavdevice61 (>= 7:7.1.5), libavfilter10 (>= 7:7.1.5), libavformat61 (>= 7:7.1.5), libavutil59 (>= 7:7.1.5), libc6 (>= 2.35), libpostproc58 (>= 7:7.1.5), libsdl2-2.0-0 (>= 2.0.12), libswresample5 (>= 7:7.1.5), libswscale8 (>= 7:7.1.5)
+Depends: libatomic1 (>= 4.8), libavcodec61 (>= 7:7.1.5), libavdevice61 (>= 7:7.1.5), libavfilter10 (>= 7:7.1.5), libavformat61 (>= 7:7.1.5), libavutil59 (>= 7:7.1.5), libc6 (>= 2.35), libpostproc58 (>= 7:7.1.5), libswresample5 (>= 7:7.1.5), libswscale8 (>= 7:7.1.5)
 Suggests: ffmpeg-doc
 Section: video
 Priority: optional
@@ -16,6 +16,5 @@ Description: Tools for transcoding, streaming and playing of multimedia files
  .
  This package contains:
   * ffmpeg: a command line tool to convert multimedia files between formats
-  * ffplay: a simple media player based on SDL and the FFmpeg libraries
   * ffprobe: a simple multimedia stream analyzer
   * qt-faststart: a utility to rearrange Quicktime files

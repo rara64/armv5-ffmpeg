@@ -1,0 +1,107 @@
+# syntax = docker/dockerfile:experimental
+FROM --platform=linux/arm/v5 debian:trixie-backports
+
+ARG FFMPEG_VERSION
+
+RUN apt update && apt install -y build-essential cmake autoconf pkg-config wget \
+    ffmpeg frei0r-plugins-dev libchromaprint-dev ladspa-sdk libaom-dev liblilv-dev libiec61883-dev libraw1394-dev libavc1394-dev libavc1394-tools \
+    libbluray-dev libbs2b-dev libcaca-dev libcodec2-dev libdav1d-dev libdc1394-dev libdvdnav-dev flite1-dev glslang-dev libgme-dev libgsm1-dev \
+    libjxl-dev libmysofa-dev libopenjp2-7-dev libopenmpt-dev librabbitmq-dev librav1e-dev librist-dev librsvg2-dev librubberband-dev \
+    libshine-dev libspeex-dev libsrt-gnutls-dev libsvtav1enc-dev libtheora-dev libtwolame-dev libvidstab-dev libvpx-dev libxvidcore-dev libzimg-dev \
+    libzmq3-dev libzvbi-dev libopenal-dev ocl-icd-opencl-dev libpocketsphinx-dev libjack-dev libcdio-dev libcdio-paranoia-dev \
+    libass-dev libmp3lame-dev libopus-dev libsnappy-dev libsoxr-dev libssh-dev libx264-dev libx265-dev
+
+ENV CC=arm-linux-gnueabi-gcc
+ENV CXX=arm-linux-gnueabi-g++
+
+RUN mkdir ffmpeg_sources && \
+    cd ffmpeg_sources && \
+    wget https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.bz2 && \
+    tar xjvf ffmpeg-$FFMPEG_VERSION.tar.bz2 && \
+    cd ffmpeg-$FFMPEG_VERSION && \
+    ./configure \
+    --prefix=/usr \
+    --toolchain=hardened \
+    --libdir=/usr/lib/arm-linux-gnueabi \
+    --incdir=/usr/include/arm-linux-gnueabi \
+    --arch=arm \
+    --disable-ffplay \
+    --enable-gpl \
+    --enable-stripping \
+    --disable-libmfx \
+    --disable-omx \
+    --enable-gnutls \
+    --enable-libaom \
+    --enable-libass \
+    --enable-libbs2b \
+    --enable-libcdio \
+    --enable-libcodec2 \
+    --enable-libdav1d \
+    --enable-libflite \
+    --enable-libfontconfig \
+    --enable-libfreetype \
+    --enable-libfribidi \
+    --enable-libglslang \
+    --enable-libgme \
+    --enable-libgsm \
+    --enable-libharfbuzz \
+    --enable-libmp3lame \
+    --enable-libmysofa \
+    --enable-libopenjpeg \
+    --enable-libopenmpt \
+    --enable-libopus \
+    --enable-librubberband \
+    --enable-libshine \
+    --enable-libsnappy \
+    --enable-libsoxr \
+    --enable-libspeex \
+    --enable-libtheora \
+    --enable-libtwolame \
+    --enable-libvidstab \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libwebp \
+    --enable-libx265 \
+    --enable-libxml2 \
+    --enable-libxvid \
+    --enable-libzimg \
+    --enable-openal \
+    --enable-opencl \
+    --enable-opengl \
+    --disable-sndio \
+    --disable-libvpl \
+    --enable-libdc1394 \
+    --enable-libdrm \
+    --enable-libiec61883 \
+    --enable-chromaprint \
+    --enable-frei0r \
+    --enable-ladspa \
+    --enable-libbluray \
+    --enable-libcaca \
+    --enable-libdvdnav \
+    --enable-libdvdread \
+    --enable-libjack \
+    --enable-libpulse \
+    --enable-librabbitmq \
+    --enable-librist \
+    --enable-libsrt \
+    --enable-libssh \
+    --enable-libsvtav1 \
+    --enable-libx264 \
+    --enable-libzmq \
+    --enable-libzvbi \
+    --enable-lv2 \
+    # placebo is not up to date enough for newer ffmpeg
+    --disable-libplacebo \
+    --enable-librav1e \
+    --enable-pocketsphinx \
+    --enable-librsvg \
+    --enable-libjxl \
+    --enable-shared && \
+    make && \
+    DESTDIR="/ffmpeg" make install
+
+COPY DEBIAN/control.optimized /ffmpeg/DEBIAN/control
+
+RUN sed -i "s/\*VER\*/$FFMPEG_VERSION/g" /ffmpeg/DEBIAN/control && \
+    dpkg-deb --build ffmpeg "ffmpeg_${FFMPEG_VERSION}_armel.deb"
