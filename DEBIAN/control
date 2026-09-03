@@ -18,4 +18,3 @@ Description: Tools for transcoding, streaming and playing of multimedia files
   * ffmpeg: a command line tool to convert multimedia files between formats
   * ffplay: a simple media player based on SDL and the FFmpeg libraries
   * ffprobe: a simple multimedia stream analyzer
-  * qt-faststart: a utility to rearrange Quicktime files

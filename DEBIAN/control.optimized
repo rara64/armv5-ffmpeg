@@ -17,4 +17,3 @@ Description: Tools for transcoding, streaming and playing of multimedia files
  This package contains:
   * ffmpeg: a command line tool to convert multimedia files between formats
   * ffprobe: a simple multimedia stream analyzer
-  * qt-faststart: a utility to rearrange Quicktime files

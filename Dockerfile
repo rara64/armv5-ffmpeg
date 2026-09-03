@@ -11,9 +11,6 @@ RUN apt update && apt install -y build-essential cmake autoconf pkg-config wget 
     libzmq3-dev libzvbi-dev libopenal-dev ocl-icd-opencl-dev libpocketsphinx-dev libjack-dev libcdio-dev libcdio-paranoia-dev \
     libass-dev libmp3lame-dev libopus-dev libsnappy-dev libsoxr-dev libssh-dev libx264-dev libx265-dev libsdl2-dev
 
-ENV CC=arm-linux-gnueabi-gcc
-ENV CXX=arm-linux-gnueabi-g++
-
 RUN mkdir ffmpeg_sources && \
     cd ffmpeg_sources && \
     wget https://ffmpeg.org/releases/ffmpeg-$FFMPEG_VERSION.tar.bz2 && \
